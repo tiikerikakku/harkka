@@ -2,4 +2,4 @@
 
 **Alustava suunnitelma:** ohjelma, jolla voi hallinnoida omaa elokuvakokoelmaansa.
 
-*Tähän tulee linkki laskarihakemistoon...*
+*Linkki laskarihakemistoon: [laskarit](https://github.com/tiikerikakku/harkka/tree/main/laskarit)*
