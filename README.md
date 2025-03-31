@@ -1,7 +1,16 @@
 # ohjelmistotekniikka, harjoitustyö
 
-**Alustava suunnitelma:** ohjelma, jolla voi hallinnoida omaa elokuvakokoelmaansa.
+Ohjelma, jolla voi hallinnoida omaa elokuvakokoelmaansa.
 
-**Tarkempi suunnitelma:** kts. dokumentaatio.
+*Linkkejä:* [vaatimusmäärittely](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/vaatimusmaarittely.md), [tuntikirjanpito](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/tuntikirjanpito.md), [muutokset](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/changelog.md)
 
-*Linkkejä:* [laskarit](https://github.com/tiikerikakku/harkka/tree/main/laskarit), [vaatimusmäärittely](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/vaatimusmaarittely.md), [tuntikirjanpito](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/tuntikirjanpito.md)
+## käyttö
+
+```sh
+poetry shell
+invoke db               # tietokanta kuntoon (huom!!!!!!!!!!!!!!!!! tyhjentää kannan)
+invoke start
+
+invoke test             # testaa
+invoke coverage-report  # luo kattavuusrapsa
+```
