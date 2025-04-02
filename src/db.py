@@ -4,4 +4,4 @@ from os import system
 connection = connect('elokuvat.db')
 
 def clear():
-  system('cat schema.sql | sqlite3 elokuvat.db')
+    system('cat schema.sql | sqlite3 elokuvat.db')
