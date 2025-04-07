@@ -1,6 +1,6 @@
 from tkinter import ttk, font, Listbox, StringVar
 
-class MovielistView:
+class UserView:
     def __init__(self, root, user, back):
         self._r = root
         self._f = ttk.Frame(self._r, padding=(0, 15))
@@ -8,8 +8,6 @@ class MovielistView:
         self._b = back
 
         ttk.Label(self._f, text='omat elokuvasi', font=font.Font(weight='bold')).pack()
-
-        print(user)
 
         logout = ttk.Button(
             self._f,
