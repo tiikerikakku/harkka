@@ -55,5 +55,10 @@ class StartView:
             messagebox.showerror(message='et ole valinnut käyttäjää!!')
 
     def _create_user(self, name):
-        self._user_repo.create_user(name)
-        messagebox.showinfo(message='käyttäjä luotu')
+        try:
+            self._user_repo.create_user(name)
+            messagebox.showinfo(message='käyttäjä luotu; siirrytään järjestelmään')
+            self._f.destroy()
+            self._b(name)
+        except:
+            messagebox.showerror(message='käyttäjän luominen ei onnistunut; tarkista ettei nimi ole jo varattu')
