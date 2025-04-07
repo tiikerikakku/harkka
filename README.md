@@ -2,7 +2,7 @@
 
 Ohjelma, jolla voi hallinnoida omaa elokuvakokoelmaansa.
 
-*Linkkejä:* [vaatimusmäärittely](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/vaatimusmaarittely.md), [tuntikirjanpito](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/tuntikirjanpito.md), [muutokset](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/changelog.md)
+*Linkkejä:* [vaatimusmäärittely](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/vaatimusmaarittely.md), [tuntikirjanpito](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/tuntikirjanpito.md), [muutokset](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/changelog.md), [arkkitehtuuri](https://github.com/tiikerikakku/harkka/blob/main/dokumentaatio/arkkitehtuuri.md)
 
 ## käyttö
 
