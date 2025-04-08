@@ -1,17 +1,28 @@
 from tkinter import Tk
 from views.start import StartView
 from views.user import UserView
+from views.movies import MoviesView
 
 class UI:
     def __init__(self, root):
         self._r = root
-        self._f = StartView(self._r, self._to_user)
+
+        self._actions = {
+            'user': self._to_user,
+            'sign_in': self._to_sign_in,
+            'movies': self._to_movies
+        }
+
+        self._f = StartView(self._r, self._actions)
 
     def _to_user(self, user):
-        self._f = UserView(self._r, user, self._to_sign_in)
+        self._f = UserView(self._r, user, self._actions)
 
     def _to_sign_in(self):
-        self._f = StartView(self._r, self._to_user)
+        self._f = StartView(self._r, self._actions)
+
+    def _to_movies(self, user):
+        self._f = MoviesView(self._r, user, self._actions)
 
 w = Tk()
 

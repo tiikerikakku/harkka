@@ -3,14 +3,14 @@ from db import connection
 from repositories.user import UserRepository
 
 class StartView:
-    def __init__(self, root, back):
+    def __init__(self, root, actions):
         self._user_repo = UserRepository(connection)
         self._user_list = self._user_repo.get_users()
 
         self._r = root
         self._f = ttk.Frame(self._r, padding=(0, 15))
 
-        self._b = back
+        self._a = actions
 
         ttk.Label(
             self._f,
@@ -50,7 +50,7 @@ class StartView:
     def _sign_in(self, selection):
         if selection:
             self._f.destroy()
-            self._b(self._user_list[selection[0]])
+            self._a['user'](self._user_list[selection[0]])
         else:
             messagebox.showerror(message='et ole valinnut käyttäjää!!')
 
@@ -59,6 +59,8 @@ class StartView:
             self._user_repo.create_user(name)
             messagebox.showinfo(message='käyttäjä luotu; siirrytään järjestelmään')
             self._f.destroy()
-            self._b(name)
+            self._a['user'](name)
         except:
-            messagebox.showerror(message='käyttäjän luominen ei onnistunut; tarkista ettei nimi ole jo varattu')
+            messagebox.showerror(
+                message='käyttäjän luominen ei onnistunut; tarkista ettei nimi ole jo varattu'
+            )
