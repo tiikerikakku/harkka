@@ -1,3 +1,8 @@
-* 18.3. – 1 h
-* 25.3. – 3 h
-* 31.3. – 3 h
+* 18.3. – 1 h dokumentaatiota jne.
+* 25.3. – 3 h projekti pystyyn
+* 31.3. – 3 h jatketaan 3. vk hommia valmiiksi
+* 2.4. – 1 h lint pystyyn ja coveragen säätöä
+* 7.4. – 2 h pakolliset luokkakaaviot ja elokuviin liittyvät perusominaisuudet alkuun
+* 8.4. – 2 h elokuvan voi nyt lisätä järjestelmään, refaktorointia valitettavasti jo nyt, uusia testejä
+
+yhteensä 12 h
