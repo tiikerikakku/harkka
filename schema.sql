@@ -9,7 +9,8 @@ create table users (
 
 create table movies (
   id integer primary key,
-  movie text unique not null
+  movie text unique not null,
+  info text
 );
 
 create table collected (
