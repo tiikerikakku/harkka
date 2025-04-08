@@ -6,6 +6,8 @@ Ohjelma, jolla voi hallinnoida omaa elokuvakokoelmaansa.
 
 ## käyttö
 
+Asenna ensin poetrylla. Tämän jälkeen seuraavat komennot ovat käytettävissäsi:
+
 ```sh
 poetry shell
 invoke db               # tietokanta kuntoon (huom!!!!!!!!!!!!!!!!! tyhjentää kannan)
@@ -13,4 +15,5 @@ invoke start
 
 invoke test             # testaa
 invoke coverage-report  # luo kattavuusrapsa
+invoke lint             # koodityylin tarkastus
 ```
