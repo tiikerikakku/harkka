@@ -1,4 +1,5 @@
 from tkinter import ttk, font, Listbox, StringVar, IntVar, messagebox
+from sqlite3 import IntegrityError
 from db import connection
 from repositories.movie import MovieRepository
 
@@ -69,5 +70,5 @@ class MoviesView:
             messagebox.showinfo(message='elokuva luotu')
             self._f.destroy()
             self._a['movies'](self._u)
-        except:
+        except IntegrityError:
             messagebox.showerror(message='elokuvaa ei voitu luoda')

@@ -1,4 +1,5 @@
 from tkinter import ttk, font, Listbox, StringVar, messagebox
+from sqlite3 import IntegrityError
 from db import connection
 from repositories.user import UserRepository
 
@@ -60,7 +61,7 @@ class StartView:
             messagebox.showinfo(message='käyttäjä luotu; siirrytään järjestelmään')
             self._f.destroy()
             self._a['user'](name)
-        except:
+        except IntegrityError:
             messagebox.showerror(
                 message='käyttäjän luominen ei onnistunut; tarkista ettei nimi ole jo varattu'
             )
