@@ -19,3 +19,8 @@ class CollectionRepository:
         self._c.commit()
 
         return c.lastrowid
+
+    def remove_from_collection(self, cid):
+        c = self._c.cursor()
+        c.execute('delete from collected where id = ?', (cid,))
+        self._c.commit()

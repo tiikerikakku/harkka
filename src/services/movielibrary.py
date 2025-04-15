@@ -41,6 +41,9 @@ class MovielibraryService:
         except IntegrityError:
             return False
 
+    def collection_remove(self, cid):
+        self._cr.remove_from_collection(cid)
+
     def get_users(self):
         return self._ur.get_users_formatted()
 

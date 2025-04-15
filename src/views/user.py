@@ -1,5 +1,6 @@
-from tkinter import ttk, font, Listbox, StringVar
+from tkinter import ttk, font, Listbox, StringVar, messagebox
 from services.movielibrary import movie_library
+from helpers import id_from_list_item
 
 class UserView:
     def __init__(self, root, actions):
@@ -23,6 +24,14 @@ class UserView:
         collected = Listbox(self._f, height=5, listvariable=StringVar(value=self._collection_list))
         collected.pack()
 
+        remove = ttk.Button(
+            self._f,
+            text='poista kokoelmasta',
+            padding=(5, 0),
+            command=lambda: self._remove_from_collection(collected.curselection())
+        )
+        remove.pack(pady=5)
+
         logout = ttk.Button(
             self._f,
             text='kirjaudu ulos',
@@ -41,3 +50,11 @@ class UserView:
     def _to_movies(self):
         self._f.destroy()
         self._a['movies']()
+
+    def _remove_from_collection(self, selection):
+        if selection:
+            movie_library.collection_remove(id_from_list_item(self._collection_list[selection[0]]))
+            self._f.destroy()
+            self._a['user']()
+        else:
+            messagebox.showerror(message='et ole valinnut elokuvaa!!')
