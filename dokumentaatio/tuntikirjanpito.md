@@ -4,5 +4,8 @@
 * 2.4. – 1 h lint pystyyn ja coveragen säätöä
 * 7.4. – 2 h pakolliset luokkakaaviot ja elokuviin liittyvät perusominaisuudet alkuun
 * 8.4. – 2 h elokuvan voi nyt lisätä järjestelmään, refaktorointia valitettavasti jo nyt, uusia testejä
+* 10.4. – 1 h pieniä parennuksia
+* 14.4. – 1 h olemassa olevan elokuvan voi nyt lisätä kokoelmaan, testit kuntoon, skeeman säätöä
+* 15.4. – 3 h refaktorointia; erillinen ns. service luotu, testejä, lisää dokumentaatiota
 
-yhteensä 12 h
+yhteensä 17 h

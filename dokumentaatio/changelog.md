@@ -1,3 +1,16 @@
+## vk 5
+
+* Korjattu edellisen viikon kehityskohdat
+* Pakollinen sekvenssikaavio lisätty dokumentaatioon
+* Ns. service käyttöliittymän ja repon väliin
+* Elokuvakokoelman peruspalikat kohdillaan; lisääminen, poistaminen, tarkastelu
+* Testejä
+* Skeemaa taas parenneltu
+
+### mahdollisesti kehitettävää
+
+* `.vscode`-hakemisto on tarkoituksella lisätty gitiin, mutta mikäli ohjaajan mielestä tämä on pisteenvähennyksiin johtava teko, niin sen voin jättää pois
+
 ## vk 4
 
 * Lint pystyyn
