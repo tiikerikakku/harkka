@@ -15,14 +15,14 @@ class UI:
 
         self._f = StartView(self._r, self._actions)
 
-    def _to_user(self, user):
-        self._f = UserView(self._r, user, self._actions)
+    def _to_user(self):
+        self._f = UserView(self._r, self._actions)
 
     def _to_sign_in(self):
         self._f = StartView(self._r, self._actions)
 
-    def _to_movies(self, user):
-        self._f = MoviesView(self._r, user, self._actions)
+    def _to_movies(self):
+        self._f = MoviesView(self._r, self._actions)
 
 w = Tk()
 

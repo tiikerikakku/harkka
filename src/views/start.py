@@ -1,13 +1,10 @@
 from tkinter import ttk, font, Listbox, StringVar, messagebox
-from sqlite3 import IntegrityError
-from db import connection
-from repositories.user import UserRepository
+from services.movielibrary import movie_library
 from helpers import id_from_list_item
 
 class StartView:
     def __init__(self, root, actions):
-        self._user_repo = UserRepository(connection)
-        self._user_list = self._user_repo.get_users_formatted()
+        self._user_list = movie_library.get_users()
 
         self._r = root
         self._f = ttk.Frame(self._r, padding=(0, 15))
@@ -51,18 +48,18 @@ class StartView:
 
     def _sign_in(self, selection):
         if selection:
+            movie_library.sign_in(id_from_list_item(self._user_list[selection[0]]))
             self._f.destroy()
-            self._a['user'](id_from_list_item(self._user_list[selection[0]]))
+            self._a['user']()
         else:
             messagebox.showerror(message='et ole valinnut käyttäjää!!')
 
     def _create_user(self, name):
-        try:
-            uid = self._user_repo.create_user(name)
+        if movie_library.create_user(name):
             messagebox.showinfo(message='käyttäjä luotu; siirrytään järjestelmään')
             self._f.destroy()
-            self._a['user'](uid)
-        except IntegrityError:
+            self._a['user']()
+        else:
             messagebox.showerror(
                 message='käyttäjän luominen ei onnistunut; tarkista ettei nimi ole jo varattu'
             )

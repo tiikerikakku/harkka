@@ -1,19 +1,14 @@
 from tkinter import ttk, font, Listbox, StringVar
-from db import connection
-from repositories.collection import CollectionRepository
+from services.movielibrary import movie_library
 
 class UserView:
-    def __init__(self, root, user, actions):
-        self._collection_repo = CollectionRepository(connection)
+    def __init__(self, root, actions):
+        self._collection_list = movie_library.get_collection()
 
         self._r = root
         self._f = ttk.Frame(self._r, padding=(0, 15))
 
-        self._u = user
-
         self._a = actions
-
-        self._collection_list = self._collection_repo.get_user_collection_formatted(self._u)
 
         ttk.Label(self._f, text='omat elokuvasi', font=font.Font(weight='bold')).pack()
 
@@ -39,9 +34,10 @@ class UserView:
         self._f.pack()
 
     def _sign_out(self):
+        movie_library.sign_out()
         self._f.destroy()
         self._a['sign_in']()
 
     def _to_movies(self):
         self._f.destroy()
-        self._a['movies'](self._u)
+        self._a['movies']()
