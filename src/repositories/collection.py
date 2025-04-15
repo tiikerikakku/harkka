@@ -5,7 +5,13 @@ class CollectionRepository:
     def get_user_collection_formatted(self, uid):
         c = self._c.cursor()
 
-        return [f'{x[1]} [{x[0]}]' for x in c.execute('select collected.id, movies.movie from movies, collected where collected.movie = movies.id and user = ?', (uid,)).fetchall()]
+        return (
+            [f'{x[1]} [{x[0]}]' for x in
+             c.execute('''select collected.id, movies.movie from movies, collected
+                       where collected.movie = movies.id and user = ?''', (uid,))
+             .fetchall()
+            ]
+        )
 
     def add_to_collection(self, uid, mid):
         c = self._c.cursor()
