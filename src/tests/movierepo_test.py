@@ -12,4 +12,4 @@ class UserrepoTest(TestCase):
 
         q.create_movie('les parapluies de cherbourg', 'musikaali vuodelta 1964')
 
-        self.assertEqual(q.get_movies(), ['les parapluies de cherbourg'])
+        self.assertEqual(q.get_movies_formatted(), ['les parapluies de cherbourg [1]'])

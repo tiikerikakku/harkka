@@ -10,6 +10,6 @@ class UserrepoTest(TestCase):
     def test_can_create_and_list_user(self):
         q = UserRepository(self._c)
 
-        q.create_user('abc')
+        q.create_user('amanda')
 
-        self.assertEqual(q.get_users(), ['abc'])
+        self.assertEqual(q.get_users_formatted(), ['amanda [1]'])
