@@ -69,7 +69,6 @@ class MoviesView:
 
     def _create_movie(self, name, description, collect):
         if movie_library.create_movie(name, description, collect):
-            messagebox.showinfo(message='elokuva luotu')
             self._f.destroy()
             self._a['movies']()
         else:
