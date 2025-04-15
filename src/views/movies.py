@@ -2,6 +2,8 @@ from tkinter import ttk, font, Listbox, StringVar, IntVar, messagebox
 from sqlite3 import IntegrityError
 from db import connection
 from repositories.movie import MovieRepository
+from repositories.collection import CollectionRepository
+from helpers import id_from_list_item
 
 # blame tkinter
 # pylint: disable=too-many-statements
@@ -9,7 +11,9 @@ from repositories.movie import MovieRepository
 class MoviesView:
     def __init__(self, root, user, actions):
         self._movie_repo = MovieRepository(connection)
-        self._movie_list = self._movie_repo.get_movies()
+        self._movie_list = self._movie_repo.get_movies_formatted()
+
+        self._collection_repo = CollectionRepository(connection)
 
         self._r = root
         self._f = ttk.Frame(self._r, padding=(0, 15))
@@ -22,6 +26,14 @@ class MoviesView:
 
         movies = Listbox(self._f, height=5, listvariable=StringVar(value=self._movie_list))
         movies.pack()
+
+        add = ttk.Button(
+            self._f,
+            text='lisää omaan kokoelmaan',
+            padding=(5, 0),
+            command=lambda: self._movie_to_collection(movies.curselection())
+        )
+        add.pack(pady=5)
 
         logout = ttk.Button(
             self._f,
@@ -65,10 +77,21 @@ class MoviesView:
 
     def _create_movie(self, name, description, collect):
         try:
-            print(collect)
-            self._movie_repo.create_movie(name, description)
+            mid = self._movie_repo.create_movie(name, description)
+            if collect:
+                self._collection_repo.add_to_collection(self._u, mid)
             messagebox.showinfo(message='elokuva luotu')
             self._f.destroy()
             self._a['movies'](self._u)
         except IntegrityError:
             messagebox.showerror(message='elokuvaa ei voitu luoda')
+
+    def _movie_to_collection(self, selection):
+        if selection:
+            try:
+                self._collection_repo.add_to_collection(self._u, id_from_list_item(self._movie_list[selection[0]]))
+                messagebox.showinfo(message='lisätty')
+            except IntegrityError:
+                messagebox.showerror(message='elokuvaa ei voitu lisätä kokoelmaan')
+        else:
+            messagebox.showerror(message='et ole valinnut elokuvaa!!')

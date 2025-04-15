@@ -1,13 +1,19 @@
 from tkinter import ttk, font, Listbox, StringVar
+from db import connection
+from repositories.collection import CollectionRepository
 
 class UserView:
     def __init__(self, root, user, actions):
+        self._collection_repo = CollectionRepository(connection)
+
         self._r = root
         self._f = ttk.Frame(self._r, padding=(0, 15))
 
         self._u = user
 
         self._a = actions
+
+        self._collection_list = self._collection_repo.get_user_collection_formatted(self._u)
 
         ttk.Label(self._f, text='omat elokuvasi', font=font.Font(weight='bold')).pack()
 
@@ -19,7 +25,7 @@ class UserView:
         )
         movies.pack(pady=5)
 
-        collected = Listbox(self._f, height=5, listvariable=StringVar(value=['dummy']))
+        collected = Listbox(self._f, height=5, listvariable=StringVar(value=self._collection_list))
         collected.pack()
 
         logout = ttk.Button(
