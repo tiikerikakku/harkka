@@ -21,8 +21,12 @@ class UI:
     def _to_sign_in(self):
         self._f = StartView(self._r, self._actions)
 
-    def _to_movies(self):
-        self._f = MoviesView(self._r, self._actions)
+    # not an issue, mode is not modified
+    # pylint: disable=dangerous-default-value
+    def _to_movies(self, mode=['default']):
+        self._f = MoviesView(self._r, self._actions, mode)
+
+    # pylint: enable=dangerous-default-value
 
 w = Tk()
 

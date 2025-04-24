@@ -21,7 +21,9 @@ class UserView:
         )
         movies.pack(pady=5)
 
-        collected = Listbox(self._f, height=5, listvariable=StringVar(value=self._collection_list))
+        collected = Listbox(
+            self._f, height=5, width=50, listvariable=StringVar(value=self._collection_list)
+        )
         collected.pack()
 
         remove = ttk.Button(
