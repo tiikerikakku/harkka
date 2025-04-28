@@ -1,4 +1,5 @@
 from sqlite3 import IntegrityError
+from themoviedb import TMDb
 from db import connection
 from repositories.user import UserRepository
 from repositories.collection import CollectionRepository
@@ -10,6 +11,8 @@ class MovielibraryService:
         self._cr = CollectionRepository(connection)
         self._mr = MovieRepository(connection)
         self._user = None
+
+        self._tmdb = TMDb(language='fi-FI', region='FI')
 
     def sign_in(self, user):
         self._user = user
@@ -52,5 +55,19 @@ class MovielibraryService:
 
     def get_movies(self):
         return self._mr.get_movies_formatted()
+
+    def tmdb_list(self, name):
+        # it's just how it is
+        # pylint: disable=line-too-long
+
+        return [f'{x.title} ({x.original_title}{f", {x.release_date.year}" if x.release_date else ""}) [{x.id}]'
+                for x in self._tmdb.search().movies(name).results]
+
+        # pylint: enable=line-too-long
+
+    def tmdb_details(self, tmdb):
+        x = self._tmdb.movie(tmdb).details()
+
+        return (x.title, x.overview)
 
 movie_library = MovielibraryService()

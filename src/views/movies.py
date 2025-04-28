@@ -1,6 +1,5 @@
 from tkinter import ttk, font, Listbox, StringVar, IntVar, messagebox
 from os import environ
-from themoviedb import TMDb
 from services.movielibrary import movie_library
 from helpers import id_from_list_item
 
@@ -20,8 +19,6 @@ class MoviesView:
         self._f = ttk.Frame(self._r, padding=(0, 15))
 
         self._a = actions
-
-        self._tmdb = TMDb(language='fi-FI', region='FI')
 
         ttk.Label(self._f, text='elokuvien hallinta', font=font.Font(weight='bold')).pack()
 
@@ -120,8 +117,10 @@ class MoviesView:
 
     def _create_movie_tmdb(self, selection, collect):
         if selection:
-            movie = self._tmdb.movie(id_from_list_item(self._movie_list[selection[0]])).details()
-            self._create_movie(movie.title, movie.overview, collect)
+            self._create_movie(
+                *movie_library.tmdb_details(id_from_list_item(self._movie_list[selection[0]])),
+                collect
+            )
         else:
             messagebox.showerror(message='et ole valinnut elokuvaa!!')
 
@@ -136,14 +135,4 @@ class MoviesView:
 
     def _find_movie(self, name):
         self._f.destroy()
-
-        # it's just how it is
-        # pylint: disable=line-too-long
-
-        self._a['movies'](
-            ['find',
-             [f'{x.title} ({x.original_title}{f", {x.release_date.year}" if x.release_date else ""}) [{x.id}]'
-              for x in self._tmdb.search().movies(name).results]]
-        )
-
-        # pylint: enable=line-too-long
+        self._a['movies'](['find', movie_library.tmdb_list(name)])
