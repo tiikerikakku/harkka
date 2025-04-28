@@ -135,4 +135,4 @@ class MoviesView:
 
     def _find_movie(self, name):
         self._f.destroy()
-        self._a['movies'](['find', movie_library.tmdb_list(name)])
+        self._a['movies'](('find', movie_library.tmdb_list(name)))
