@@ -3,7 +3,16 @@ from services.movielibrary import movie_library
 from helpers import id_from_list_item
 
 class UserView:
+    '''user view ui class'''
+
     def __init__(self, root, actions):
+        '''init instance
+
+        Args:
+            root: tkinter toplevel widget
+            actions: list of app actions
+        '''
+
         self._collection_list = movie_library.get_collection()
 
         self._r = root
@@ -45,15 +54,25 @@ class UserView:
         self._f.pack()
 
     def _sign_out(self):
+        '''sign out user and move to sign in'''
+
         movie_library.sign_out()
         self._f.destroy()
         self._a['sign_in']()
 
     def _to_movies(self):
+        '''move to movie view'''
+
         self._f.destroy()
         self._a['movies']()
 
     def _remove_from_collection(self, selection):
+        '''remove movie from collection
+
+        Args:
+            selection: collection list selection
+        '''
+
         if selection:
             movie_library.collection_remove(id_from_list_item(self._collection_list[selection[0]]))
             self._f.destroy()

@@ -1,8 +1,25 @@
 class CollectionRepository:
+    '''collection repository class'''
+
     def __init__(self, connection):
+        '''init instance
+
+        Args:
+            connection: db connection
+        '''
+
         self._c = connection
 
     def get_user_collection_formatted(self, uid):
+        '''get formatted list of user collection
+
+        Args:
+            uid: user id
+
+        Returns:
+            formatted list of user collection
+        '''
+
         c = self._c.cursor()
 
         return (
@@ -14,6 +31,16 @@ class CollectionRepository:
         )
 
     def add_to_collection(self, uid, mid):
+        '''add movie to user collection
+
+        Args:
+            uid: user id
+            mid: id of movie to be added
+
+        Returns:
+            id for collection item
+        '''
+
         c = self._c.cursor()
         c.execute('insert into collected (user, movie) values (?, ?)', (uid, mid))
         self._c.commit()
@@ -21,6 +48,12 @@ class CollectionRepository:
         return c.lastrowid
 
     def remove_from_collection(self, cid):
+        '''remove item from collection
+
+        Args:
+            cid: collection id
+        '''
+
         c = self._c.cursor()
         c.execute('delete from collected where id = ?', (cid,))
         self._c.commit()

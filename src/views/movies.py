@@ -7,7 +7,17 @@ from helpers import id_from_list_item
 # pylint: disable=too-many-statements
 
 class MoviesView:
+    '''movie view ui class'''
+
     def __init__(self, root, actions, mode):
+        '''init instance
+
+        Args:
+            root: tkinter toplevel widget
+            actions: list of app actions
+            mode: mode, which determines shown elements in view
+        '''
+
         self._m = mode
 
         if self._m[0] == 'find':
@@ -101,14 +111,26 @@ class MoviesView:
         self._f.pack()
 
     def _to_user(self):
+        '''move to user view'''
+
         self._f.destroy()
         self._a['user']()
 
     def _to_movies(self):
+        '''move to movies view'''
+
         self._f.destroy()
         self._a['movies']()
 
     def _create_movie(self, name, description, collect):
+        '''create movie
+
+        Args:
+            name: movie name
+            description: movie description
+            collect: bool that determines if created movie should be added to user's collection
+        '''
+
         if movie_library.create_movie(name, description, collect):
             self._f.destroy()
             self._a['movies']()
@@ -116,6 +138,13 @@ class MoviesView:
             messagebox.showerror(message='elokuvaa ei voitu luoda')
 
     def _create_movie_tmdb(self, selection, collect):
+        '''create movie with tmdb data
+
+        Args:
+            selection: search result list selection
+            collect: bool that determines if created movie should be added to user's collection
+        '''
+
         if selection:
             self._create_movie(
                 *movie_library.tmdb_details(id_from_list_item(self._movie_list[selection[0]])),
@@ -125,6 +154,12 @@ class MoviesView:
             messagebox.showerror(message='et ole valinnut elokuvaa!!')
 
     def _movie_to_collection(self, selection):
+        '''add movie to user collection
+
+        Args:
+            selection: movie list selection
+        '''
+
         if selection:
             if movie_library.collection_add(id_from_list_item(self._movie_list[selection[0]])):
                 messagebox.showinfo(message='lisätty')
@@ -134,5 +169,11 @@ class MoviesView:
             messagebox.showerror(message='et ole valinnut elokuvaa!!')
 
     def _find_movie(self, name):
+        '''find movie through tmdb and show results
+
+        Args:
+            name: search term
+        '''
+
         self._f.destroy()
         self._a['movies'](('find', movie_library.tmdb_list(name)))
