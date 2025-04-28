@@ -1,7 +1,9 @@
 from sqlite3 import connect
-from os import system
+from os import environ, system
 
-connection = connect('elokuvat.db')
+db = 'elokuvat_test' if 'PYTEST_VERSION' in environ else 'elokuvat'
+
+connection = connect(f'{db}.db')
 
 def clear():
-    system('cat schema.sql | sqlite3 elokuvat.db')
+    system(f'cat schema.sql | sqlite3 {db}.db')
