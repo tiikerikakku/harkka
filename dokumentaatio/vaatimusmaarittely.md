@@ -15,9 +15,9 @@ Sovellusta voi käyttää useampi käyttäjä. Eri käyttäjärooleja ei tosin o
 * käyttäjä voi luoda itselleen tunnuksen **TEHTY**
 * käyttäjä voi valita oman tunnuksensa listalta ja kirjautua **TEHTY**
 * käyttäjä voi nähdä oman elokuvakokoelmansa **TEHTY**
-* käyttäjä voi lisätä elokuvan järjestelmään
+* käyttäjä voi lisätä elokuvan järjestelmään **TEHTY**
   * tiedot voi syöttää käsin **TEHTY**
-  * tiedot voi hakea APIn kautta hakusanalla
+  * tiedot voi hakea APIn kautta hakusanalla **TEHTY**
 * käyttäjä voi lisätä elokuvan omaan kokoelmaansa **TEHTY**
 * käyttäjä voi poistaa elokuvan omasta kokoelmastaan **TEHTY**
 * käyttäjä voi poistua järjestelmästä **TEHTY**

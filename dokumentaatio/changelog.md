@@ -1,3 +1,11 @@
+## vk 6
+
+* Api-haku toteutettu
+* Testeillä erillinen tietokanta
+* Lint-hommia säädetty
+* Docstringit lisätty
+* Lisää dokumentaatiota sis. esim. käyttöohjeen
+
 ## vk 5
 
 * Korjattu edellisen viikon kehityskohdat
