@@ -10,5 +10,6 @@
 * 24.4. – 2 h api-haku
 * 28.4. – 2 h refaktorointi, docstring, dokumentaatio
 * 29.4. – 2 h lisää dokumentaatiota, releasen valmistelu
+* 11.5. – 5 h arviot, info-ikkuna, dokumentaatio
 
-yhteensä 23 h
+yhteensä 28 h

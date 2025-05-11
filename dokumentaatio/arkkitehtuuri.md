@@ -1,13 +1,13 @@
 # sovelluksen arkkitehtuurikuvaus
 
-Sovellus on toteutettu kutakuinkin kurssilla esitetyn mallin mukaisesti; eriytettynä ui, service ja repo -jaon mukaisesti. Ui hoitaa vain käyttöliittymään liittyvät asiat, ja kommunikoi repojen kanssa keskitetyn servicen (`MovieLibraryService`) kautta. Repoja on tietokantataulujen mukaisesti (`UserRepository`, `MovieRepository` ja `CollectionRepository`).
+Sovellus on toteutettu kutakuinkin kurssilla esitetyn mallin mukaisesti; eriytettynä ui, service ja repo -jaon mukaisesti. Ui hoitaa vain käyttöliittymään liittyvät asiat, ja kommunikoi repojen kanssa keskitetyn servicen (`MovielibraryService`) kautta. Repoja on tietokantataulujen mukaisesti (`UserRepository`, `MovieRepository` ja `CollectionRepository`).
 
 Alla oleva luokkakaavio kuvaa suurin piirtein sovelluksen tietorakennetta.
 
 ```mermaid
   classDiagram
-    User "1" -- "*" CollectedMovie
-    Movie "1" -- "*" CollectedMovie
+    User "1" -- "*" CollectedItem
+    Movie "1" -- "*" CollectedItem
 
   class User {
     id
@@ -18,14 +18,13 @@ Alla oleva luokkakaavio kuvaa suurin piirtein sovelluksen tietorakennetta.
     id
     name
     description
-    image
   }
 
-  class CollectedMovie {
+  class CollectedItem {
     id
     movieId
     userId
-    review
+    rating
   }
 ```
 
@@ -54,6 +53,8 @@ Seuraavaksi esitellään sekvenssikaavio, joka kuvaa elokuvan luonti- ja kokoelm
 ```
 
 Tässä nähdään juurikin, miten kurssilla esitetty malli (`ui <-> service <-> repo`) toteutuu sovelluksessa.
+
+Tarkemmin tähän voi tutustua katsomalla koodia, jossa on jopa docstring-kommentit.
 
 ## konfiguraatio ja tietojen tallennus
 

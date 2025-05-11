@@ -46,6 +46,8 @@ Luotu elokuva näkyy listalla:
 
 ![](media/8.png)
 
+Järjestelmän uusimmassa versiossa (11.5.2025) pääset myös tämän listan kautta tarkastelemaan elokuvan tarkempia tietoja ja voit myös antaa oman numeerisen arviosi elokuvasta.
+
 ### järjestelmästä poistuminen
 
 Voit omasta kokoelmanäkymästäsi kirjautua ulos (huomaa! nyt näet aiemmin kokoelmaasi lisätyn elokuvan):

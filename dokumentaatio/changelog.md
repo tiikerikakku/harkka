@@ -1,3 +1,11 @@
+## loppupalatus
+
+* Dokumentaatio valmiiksi
+* Uusi kokoelman info-ikkuna
+* Käyttäjä voi asettaa arvion elokuvalle
+* Käyttäjä voi nähdää muiden arviot (keskiarvo)
+* Käyttäjä näkee, jos muilla käyttäjillä on sama elokuva kokoelmassaan
+
 ## vk 6
 
 * Api-haku toteutettu
