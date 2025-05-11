@@ -19,5 +19,7 @@ create table collected (
   id integer primary key,
   user integer references users not null,
   movie integer references movies not null,
+  rating integer not null default 0,
+  check(rating between 0 and 5),
   unique(user, movie)
 );

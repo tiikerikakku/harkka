@@ -33,7 +33,7 @@ class MovielibraryService:
         self._user = None
 
     def create_user(self, user):
-        '''creates a user
+        '''creates a user and signs in
 
         Args:
             user: user name for new user
@@ -121,7 +121,38 @@ class MovielibraryService:
 
         return self._mr.get_movies_formatted()
 
-    def tmdb_list(self, name):
+    def get_item(self, cid):
+        '''get a collected item
+
+        Returns:
+            tuple with item info
+        '''
+
+        mean = self._cr.mean_rating(cid)
+        collectors = self._cr.other_collectors(cid)
+        if collectors == []:
+            collectors = [('ei kukaan',)]
+
+        return (
+            self._cr.get_collected_item(cid) +
+            (mean if mean[0] else ('ei arvioita',)) +
+            (', '.join([x[0] for x in collectors]),)
+        )
+
+    def rate_item(self, cid, rating):
+        '''rate a collected item
+
+        Returns:
+            True if rated, False if error
+        '''
+
+        try:
+            self._cr.set_rating(cid, rating)
+            return True
+        except IntegrityError:
+            return False
+
+    def tmdb_list(self, name): # pragma: no cover
         '''list movies based on search term from tmdb
 
         Args:
@@ -139,7 +170,7 @@ class MovielibraryService:
 
         # pylint: enable=line-too-long
 
-    def tmdb_details(self, tmdb):
+    def tmdb_details(self, tmdb): # pragma: no cover
         '''find details based on a tmdb id
 
         Args:

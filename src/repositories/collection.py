@@ -57,3 +57,63 @@ class CollectionRepository:
         c = self._c.cursor()
         c.execute('delete from collected where id = ?', (cid,))
         self._c.commit()
+
+    def get_collected_item(self, cid):
+        '''get item from collection
+
+        Args:
+            cid: collection id
+
+        Returns:
+            item details as tuple
+        '''
+
+        c = self._c.cursor()
+        return c.execute('''select movies.movie, movies.info, collected.rating
+                         from collected, movies
+                         where collected.id = ?
+                         and collected.movie = movies.id''', (cid,)).fetchone()
+
+    def set_rating(self, cid, rating):
+        '''set item rating
+
+        Args:
+            cid: collection id
+            rating: rating to be set
+        '''
+
+        c = self._c.cursor()
+        c.execute('update collected set rating = ? where id = ?', (rating, cid))
+        self._c.commit()
+
+    def mean_rating(self, cid):
+        '''get mean rating for item
+
+        Args:
+            cid: collection id
+
+        Returns:
+            item mean rating in a tuple
+        '''
+
+        c = self._c.cursor()
+        return c.execute('''select avg(rating) from collected
+                         where movie = (select movie from collected where id = ?)
+                         and rating between 1 and 5''', (cid,)).fetchone()
+
+    def other_collectors(self, cid):
+        '''get names of other collectors of an item
+
+        Args:
+            cid: collection id
+
+        Returns:
+            list of user names as tuples
+        '''
+
+        c = self._c.cursor()
+        return c.execute('''select users.user from collected, users
+                         where collected.movie = (select collected.movie
+                         from collected where id = ?)
+                         and collected.user = users.id
+                         and collected.id != ?''', (cid, cid)).fetchall()

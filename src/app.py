@@ -2,6 +2,7 @@ from tkinter import Tk
 from views.start import StartView
 from views.user import UserView
 from views.movies import MoviesView
+from views.item import ItemView
 
 class UI:
     '''main ui class for the application'''
@@ -18,7 +19,8 @@ class UI:
         self._actions = {
             'user': self._to_user,
             'sign_in': self._to_sign_in,
-            'movies': self._to_movies
+            'movies': self._to_movies,
+            'item': self._to_item
         }
 
         self._f = StartView(self._r, self._actions)
@@ -42,6 +44,15 @@ class UI:
         '''
 
         self._f = MoviesView(self._r, self._actions, mode)
+
+    def _to_item(self, cid):
+        '''instructs app to go to item view
+
+        Args:
+            cid: collection id of item
+        '''
+
+        self._f = ItemView(self._r, self._actions, cid)
 
 w = Tk()
 
