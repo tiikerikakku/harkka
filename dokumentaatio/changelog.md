@@ -1,4 +1,4 @@
-## loppupalatus
+## loppupalautus
 
 * Dokumentaatio valmiiksi
 * Uusi kokoelman info-ikkuna
